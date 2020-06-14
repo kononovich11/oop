@@ -55,3 +55,25 @@ Customer.prototype.getMembership = function() {
 
 
 const customer = new Customer('Den', 'Popov', 'basic');
+
+//ES6
+const methodName = 'setNewPrice';
+class ProductES {
+    constructor(brand, price, discount) {
+        this.brand = brand;
+        this.price = price;
+        this.discount = discount;
+    }
+    getPriceWithDiscount() {
+        return (this.price * (100 - this.discount)) / 100;
+    }
+    [methodName](newPrice) {
+        this.price = newPrice;
+    }
+
+    static plus(x, y) {
+        return x + y;
+    } 
+}
+
+const newProduct = new ProductES('nokia', 22, 8);
