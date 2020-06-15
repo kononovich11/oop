@@ -214,3 +214,41 @@ houseFurniture.getInfo = `${houseFurniture.getInfo()}  ${houseFurniture.color}`;
 const officeFurniture = new Furniture('printer', 500);
 officeFurniture.color = 'black';
 officeFurniture.getInfo = `${officeFurniture.getInfo()} ${officeFurniture.color} `
+
+/*
+Создать класс “Пользователь” с базовыми свойствами “имя”, “дата регистрации” и методом “получить информацию” (метод должен вывести имя и дату регистрации). Метод должен быть объявлен с помощью прототипов (Func.prototype...) Создать два наследника класса “Пользователь”: класс “Админ” и класс “Гость”.
+У класса “Админ” должно быть дополнительное свойство “суперАдмин” (может быть
+true/false, должно быть скрытым). Свойства определяются в момент вызова
+конструктора.
+У класса “Гость” должно быть свойство “срокДействия” (validDate, например), содержащее дату (например, одну неделю от момента регистрации).
+У классов-наследников метод “получить информацию” должен так же содержать информацию о дополнительных свойствах (“суперАдмин” и “срокДействия”)
+*/
+
+function User(name, dateReg) {
+    this.name = name;
+    this.dateReg = dateReg;
+}
+User.prototype.getInfo = function() {
+    return `${this.name} ${this.dateReg}`;
+}
+
+function Admin(name, dateReg, superAdmin) {
+    User.call(this, name, dateReg);
+    this.superAdmin = superAdmin;
+    this.getInfo = `${this.getInfo()} ${this.superAdmin}`; 
+} 
+
+Admin.prototype = Object.create(User.prototype);
+Admin.prototype.constructor = Admin;
+const admin = new Admin('halina','08.05.2019', 'true');
+
+function Guest(name, dateReg, validDate) {
+    User.call(this,name, dateReg);
+    this.validDate = validDate;
+    this.getInfo = `${this.getInfo()} ${this.validDate}`; 
+} 
+
+Guest.prototype = Object.create(User.prototype);
+Guest.prototype.constructor = Guest;
+
+const guest = new Guest('ivan', '05.09.2019','05.09.2020');
