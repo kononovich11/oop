@@ -147,3 +147,47 @@ function PlanetWithSatellite(name, statelliteName) {
 
 const earth = new PlanetWithSatellite('earth', 'moon');
 console.log(earth.getName());
+
+/*Создайте класс “Здание” (пусть у него будет имя, количество этажей, метод “получить количество этажей” и метод “установить количество этажей”).
+Создайте наследников этого класса:
+классы “Жилой дом” и “Торговый центр”. Используйте функциональное наследование 
+
+У жилого дома появится свойство “количество квартир на этаже”, а метод “получить количество этажей” должен вернуть объект вида {этажи: 5, всегоКвартир: 5 * количествоКвартир}
+
+У торгового центра появится свойство “количество магазинов на этаже”, а метод “получить количество этажей” должен вернуть объект вида {этажи: 3, всегоМагазинов: 3 * количествоМагазинов}
+От каждого класса создать экземпляр (дом, торговый центр)*/
+
+function Building(name, floors) {   
+    this.name = name;
+    this.floors = floors;
+    this.getFloors = function() {
+        return this.floors;
+    }
+    this.setFloors = function() {
+        this.floors = setFloors;
+    }
+}
+
+function House(name, floors, countFlat) {
+    Building.call(this, name, floors);
+    this.countFlat = countFlat;
+    this.getAllFloors = this.getFloors();
+    this.getFloors = {
+        floors: this.floors,
+        allFlats: this.countFlat * this.floors,
+    }
+}
+
+const house1 = new House('house1', 5, 4);
+
+function SC(name, floors, shopsOnFloor) {
+    this.shopsOnFloor = shopsOnFloor;
+    Building.call(this, name, floors);
+    this.getAllFloors = this.getFloors();
+    this.getFloors = {
+        floors: this.floors,
+        allShops: this.shopsOnFloor * this.floors,
+    }
+}
+
+const shop1 = new SC('shop1', 3, 20);
