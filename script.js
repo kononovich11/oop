@@ -77,3 +77,39 @@ class ProductES {
 }
 
 const newProduct = new ProductES('nokia', 22, 8);
+
+class UserES {
+    constructor(fName, lName) {
+        this.fName = fName;
+        this.lName = lName;
+    }
+    getFullName() {
+        return `${this.fName} ${this.lName}`;
+    }
+}
+
+class CustomerES extends UserES {
+    constructor(fName, lName, membership) {
+        super(fName, lName);
+        this.membership = membership;
+    }
+}
+
+const customerES = new CustomerES('Nina', 'Ivanova', 'static');
+
+
+//Добавьте всем функциям в прототип метод defer(ms), который вызывает функции через ms миллисекунд.
+
+function f() {
+   console.log('Hello!');
+  }
+
+function b() {
+    console.log('Bye');
+}  
+
+Function.prototype.defer = function(n) {
+    setTimeout(this,n);
+};
+
+b.defer(1000); 
