@@ -112,4 +112,38 @@ Function.prototype.defer = function(n) {
     setTimeout(this,n);
 };
 
-b.defer(1000); 
+// b.defer(1000); 
+
+// Есть класс Planet
+// function Planet(name) {
+//     this.name = name;
+//     this.getName = function () {
+//         return 'Planet name is ' + this.name;
+//     }
+// }
+// Создать наследника от Planet, который будет называться PlanetWithSatellite и будет
+// принимать, кроме name, название спутника (satelliteName). Переопределите метод
+// getName для PlanetWithSatellite так, чтобы он возвращал ту же самую строчку +
+// дополнительный текст 'The satellite is' + satelliteName.
+// Например:
+// var earth = new PlanetWithSatellite('earth', 'moon');
+// earth.getName(); // 'Planet name is earth. The satellite is moon’
+
+function Planet(name) {
+    this.name = name;
+    this.getName = function () {
+    return 'Planet name is ' + this.name;
+    }
+}
+
+function PlanetWithSatellite(name, statelliteName) {
+    Planet.call(this, name);
+    this.statelliteName = statelliteName;
+    this.getPlanetName = this.getName();
+    this.getName = function() {
+        return `${this.getPlanetName}. The satellite is ${this.statelliteName}`;
+    } 
+}
+
+const earth = new PlanetWithSatellite('earth', 'moon');
+console.log(earth.getName());
