@@ -272,6 +272,46 @@ class Component {
         this.tagName = tagName;
         this.node = document.createElement(tagName);
     }
+    textContent(text) {
+        this.node.textContent = text;
+    }
 }
 
 const comp = new Component('span');
+
+/*
+Реализовать метод в ES6 синтаксисе:
+Component.prototype.setText = function (text) { 
+  this.node.textContent = text;
+};
+*/
+
+/*
+Создать класс калькулятора который будет принимать стартовое значение и у него будут методы сложить, вычесть, умножить , разделить. Также у него должны быть геттер и сеттер для получения и установки текущего числа с которым производятся вычисления.
+*/
+
+class Calculator {
+    constructor(startVal) {
+        this.startVal = startVal;
+    }
+    plus(n) {
+        return this.startVal + n;
+    }
+    minus(n) {
+        return this.startVal - n;
+    }
+    multi(n) {
+        return this.startVal * n;
+    }
+    division(n) {
+        return this.startVal / n;
+    }
+    get value() {
+        return this.startVal;
+    }
+    set value(newVal) {
+        this.startVal = newVal;
+    }
+}
+
+const calcValue = new Calculator(5);
