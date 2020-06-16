@@ -315,3 +315,103 @@ class Calculator {
 }
 
 const calcValue = new Calculator(5);
+
+//ES6
+/*Есть класс Planet
+function Planet(name) {
+    this.name = name;
+    this.getName = function () {
+        return 'Planet name is ' + this.name;
+    }
+}
+Создать наследника от Planet, который будет называться PlanetWithSatellite и будет
+принимать, кроме name, название спутника (satelliteName). Переопределите метод
+getName для PlanetWithSatellite так, чтобы он возвращал ту же самую строчку +
+дополнительный текст 'The satellite is' + satelliteName.
+Например:
+var earth = new PlanetWithSatellite('earth', 'moon');
+earth.getName(); // 'Planet name is earth. The satellite is moon’
+*/
+
+class Planet1 {
+    constructor(name) {
+        this.name = name;
+    }
+    getName() {
+        return 'Planet name is ' + this.name;
+    }
+}
+
+class PlanetWithSatellite1 extends Planet1 {
+    constructor(name, satelliteName) {
+        super(name);
+        this.satelliteName = satelliteName;
+    }
+    getName() {
+        return `${super.getName()} The satellite is ${this.satelliteName}`;
+    }
+}
+
+const mars = new PlanetWithSatellite1('mars', 'sputnik');
+
+/*
+Создайте класс “Здание” (пусть у него будет имя, количество этажей, метод “получить количество этажей” и метод “установить количество этажей”).
+Создайте наследников этого класса:
+классы “Жилой дом” и “Торговый центр”. Используйте функциональное наследование 
+
+У жилого дома появится свойство “количество квартир на этаже”, а метод “получить количество этажей” должен вернуть объект вида {этажи: 5, всегоКвартир: 5 * количествоКвартир}
+
+*/
+
+class Building1 {
+    constructor(name, amountFloors) {
+        this.name = name;
+        this.amountFloors = amountFloors;
+    }
+    getamountFloors() {
+        return this.amountFloors;
+    }
+}
+
+class House1 extends Building1 {
+    constructor(name, amountFloors, amountFlats) {
+        super(name, amountFloors);
+        this.amountFlats = amountFlats;
+    }
+    getamountFloors() {
+        return {
+            floors: this.amountFloors,
+            amount: this.amountFloors * this.amountFlats,
+        }
+    }
+}
+
+const house11 = new House1('house11', 5, 6);
+
+/*
+Создать класс “Мебель” с базовыми свойствами “имя”, “цена” и методом “получить информацию” (метод должен вывести имя и цену). Метод должен быть объявлен с помощью прототипов (Func.prototype...). Создать два экземпляра класса “Мебель”: экземпляр “ОфиснаяМебель” и
+“Мебель для дома”. Придумайте им по одному свойству, которые будут характерны только для этих экземпляров (например, для офисной мебели - наличие компьютерного стола или шредера). Метод “получить информацию” должен учитывать и добавленное вами новое свойство.
+Задача на переопределение метода у экземпляров класса.
+*/
+
+class Furniture1 {
+    constructor(name, price) {
+        this.name = name;
+        this.price = price;
+    }
+    getInfo() {
+        return `${this.name} ${this.price}`
+    }
+} 
+
+class Office1 extends Furniture1 {
+    constructor(name, price, color) {
+        super(name, price);
+        this.color = color;
+    }
+    getInfo() {
+        return `${super.getInfo()} ${this.color}`;
+    }
+}
+
+const office1 = new Office1('printer', 300, 'black');
