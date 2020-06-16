@@ -1,3 +1,4 @@
+"use strict"
 function Product(brand, price, discount) {
     this.brand = brand;
     this.price = price;
@@ -252,3 +253,25 @@ Guest.prototype = Object.create(User.prototype);
 Guest.prototype.constructor = Guest;
 
 const guest = new Guest('ivan', '05.09.2019','05.09.2020');
+
+/*
+Реализовать конструктор в ES6 синтаксисе (также используйте аргументы по умолчанию):
+
+function Component(tagName) {
+  this.tagName = tagName || 'div';
+  this.node = document.createElement(tagName);
+}
+
+Пример вызова:
+
+const comp = new Component('span');
+*/
+
+class Component {
+    constructor(tagName = 'div') {
+        this.tagName = tagName;
+        this.node = document.createElement(tagName);
+    }
+}
+
+const comp = new Component('span');
